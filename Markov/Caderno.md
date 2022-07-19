@@ -10,5 +10,7 @@ A & 0,2& 0,3 & 0,5 & 0\\
 B & 0 & 0,8 & 0 & 0,2\\
 C & 0 & 0,2 & 0,1 & 0,7\\
 D & 0,3 & 0 & 0 & 0,7\\
-\end{bmatrix}$$ 
+\end{bmatrix}$$  
+<br>  
+
 ![](imagens/ex_markov_1.jpg)
