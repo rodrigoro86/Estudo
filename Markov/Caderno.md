@@ -34,4 +34,36 @@ Uma cadeia de Markov $X_{0},X_{1},...,X{n}$ nos estados 0, 1, 2 tem matriz de pr
 ## Teorema: (Equações de Chapman-Kolmogorv)  
 A probabilidade de transição no n-ésimo passo para uma cadeia de Markov satisfaz:  
 $P_{ij}^{n}=P(X_{m+n}=j|X_{m}=i)=\sum_{k=0}^{\infty}P_{ik}P_{kj}^{n-1}$  
-onde definimos $P_{ij}^{0}= \delta = \begin{matrix} 1 & i=j \\ 0 & i \neq j \end{matrix}$
+onde definimos $P_{ij}^{0}= \delta = \begin{matrix} 1 & i=j \\ 0 & i \neq j \end{matrix}$  
+<br>
+### Exemplo
+![](imagens/exemplo_Markov_3.png)  
+<br>
+## Video-Aula  
+Cadeia de Markov - Aula 2  
+link: https://www.youtube.com/watch?v=0ymZ2Iv_9q8&list=PLSc7xcwCGNh0jSylDm0QrDJaFTC3vAbvc&index=3  
+<br>
+![](imagens/exemplo_Markov_4.png)  
+
+## Estados da cadeia 
+* Transientes 
+* Recorrentes
+* Absorventes
+
+#### Perguntas que estamos inressados:
+* Probabilidade de absorção:
+    * Inciando em um vértice i, qual é a probabilidade de visitar um outro vértice j?
+* Tempo média para absorção
+    * Inciando em um vértice i, quanto passos, em média, são necessário para visitar o vértice j pela primeira vez?
+* Número médio de visitas:
+    * Inciando em um vértice i, quantas vissitas um vértice k vai receber antes de chegar em outro vérice j?
+
+![](imagens/exemplo_Markov_Análise.png)  
+* **Tempo médio até a absorção:**
+    * $T=min\{n \ge 0;X_{n}=0$ ou $X_{n}=2\}$
+* **Probabilidade de absorção:**$P(X_{T}=0|X_{0}=1)=u$
+* **Tempo médio até a absorção:** $E[T|X_{0}=1]=v$
+
+### Análise do primeiro passo
+$P(X_{T}=0|X_{0}=1)=u=?$
+
