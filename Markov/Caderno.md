@@ -60,7 +60,7 @@ link: https://www.youtube.com/watch?v=0ymZ2Iv_9q8&list=PLSc7xcwCGNh0jSylDm0QrDJa
 
 ![](imagens/exemplo_Markov_Análise.png)  
 * **Tempo médio até a absorção:**
-    * $T=min\{n \ge 0;X_{n}=0$ ou $X_{n}=2\}$
+$T=min\{n \ge 0;X_{n}=0$ ou $X_{n}=2\}$
 * **Probabilidade de absorção:**$P(X_{T}=0|X_{0}=1)=u$
 * **Tempo médio até a absorção:** $E[T|X_{0}=1]=v$
 
