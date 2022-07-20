@@ -1,5 +1,5 @@
 # Cadeias de Markov
-## Video-Aula  
+## Video-Aula  1
 Cadeia de Markov - Aula 1  
 link: https://www.youtube.com/watch?v=k6FAZJGTZJo&list=PLSc7xcwCGNh0jSylDm0QrDJaFTC3vAbvc&index=2
 
@@ -39,7 +39,7 @@ onde definimos $P_{ij}^{0}= \delta = \begin{matrix} 1 & i=j \\ 0 & i \neq j \end
 ### Exemplo
 ![](imagens/exemplo_Markov_3.png)  
 <br>
-## Video-Aula  
+## Video-Aula 2
 Cadeia de Markov - Aula 2  
 link: https://www.youtube.com/watch?v=0ymZ2Iv_9q8&list=PLSc7xcwCGNh0jSylDm0QrDJaFTC3vAbvc&index=3  
 <br>
@@ -59,7 +59,7 @@ link: https://www.youtube.com/watch?v=0ymZ2Iv_9q8&list=PLSc7xcwCGNh0jSylDm0QrDJa
     * Inciando em um vértice i, quantas vissitas um vértice k vai receber antes de chegar em outro vérice j?
 
 ![](imagens/exemplo_Markov_Análise.png)  
-* **Tempo médio até a absorção:**
+* **Tempo médio até a absorção:**  
 $T=min\{n \ge 0;X_{n}=0$ ou $X_{n}=2\}$
 * **Probabilidade de absorção:**$P(X_{T}=0|X_{0}=1)=u$
 * **Tempo médio até a absorção:** $E[T|X_{0}=1]=v$
@@ -67,3 +67,54 @@ $T=min\{n \ge 0;X_{n}=0$ ou $X_{n}=2\}$
 ### Análise do primeiro passo
 $P(X_{T}=0|X_{0}=1)=u=?$
 
+![](imagens/exemplo_Markov_Análise_2.png) 
+![](imagens/exemplo_Markov_Análise_3.png)
+
+ * **Tempo médio até a absorção:**  
+$T=min\{n \ge 0;X_{n}=0$ ou $X_{n}=2\}$
+
+$u=P(X_{T}=0|X_{0}=1)=\frac {P_{10}}{P_{10}+P_{P12}}=\frac {P_{10}}{1-P_{P11}}$
+$E[T|X_{0}=1]=v=\frac {1}{1-P_{11}}$
+
+![](imagens/exemplo_Markov_Analise_4.png)
+![](imagens/exemplo_Markov_Analise_5.png)
+
+
+
+## Video-Aula  4
+Cadeia de Markov - Aula 4  
+link: https://www.youtube.com/watch?v=_N9bZNTaMz8&list=PLSc7xcwCGNh0jSylDm0QrDJaFTC3vAbvc&index=5
+
+#### Classificação de estados
+* **Definição**: Um estado j é acessível pelo estado i se $P_{ij}^{n}>0$ para algun $n>0$
+Assumimos que cada estado é acessível a si própio, $P_{ii}^{0}=1$
+* **Definição**: Dois estados que são acessíveis um ao outro são ditos comunicantes: 
+$i <->j:i$ e j se comunicam
+* Além disso:
+    * Se i <--> j, então j <--> i
+    * Se i <--> j e j <--> k, então i <--> k (transitividade)
+* Estados que se comunicam formam classes. 
+
+![](imagens/classificacao_estados_1.png)
+
+
+## Cadeias de Markov: o algoritmo PageRank
+Cadeias de Markov: o algoritmo PageRank 
+link: https://www.youtube.com/watch?v=iwraRlbubeQ&list=PLSc7xcwCGNh0jSylDm0QrDJaFTC3vAbvc&index=6
+
+* **Ideia geral**
+    * Mapear a web como uma cadeia de Markov e transforamar essa cadeia para que ela seja ergótica. 
+    * Calcular a distribuição estacionária. 
+    * A distribuição estacionária é o PageRank. 
+
+* **Teorema:** Para uma cadeia de Markov **irredutível e aperiódica** com matriz de probabilidade de transição P, se existe uma distribuição estacionária, ela é univocamente determinada por: 
+$\pi = \pi P$
+onde $\pi _{j}\ge 0, \forall _{j}$ e $\sum _{j=1}^{N} \pi _{k} = 1$
+$\pi _{i} = lim _{n \to  \infty} P(X_{n}=i|X_{0}=j)=lim _{n \to  \infty} P(X_{n}=i)$
+<br>
+* **Definição**: O rank de uma página i é definido por: 
+$\pi _{i} = \sum _{j}A_{ji}\frac {\pi _{j}}{k _{j}out}$
+para a k-ésima iteração:
+$\pi _{i,k+1}=\sum _{j}A_{ji}A_{ji} \frac {\pi _{j,k}}{k _{j}out}$
+Sendo
+$\pi _{i,0} = \frac {1}{N}, i = 1,2,....,N$ 
