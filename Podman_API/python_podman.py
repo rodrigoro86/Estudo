@@ -1,7 +1,8 @@
 import requests
 import json
 import sys
-
+import pandas as pd
+import socket
 
 class PODMAN():
     def __init__(self) -> None:
@@ -13,7 +14,7 @@ class PODMAN():
         jsonresponse = json.loads(response.text)
         return jsonresponse"""
     
-    def _get_command(self, comando, parametro):
+    def _get_command(self, comando, parametro=None):
         url = f"{self.service}/{comando}"
         headers = {'Content-type': 'application/json'}
         response = requests.request("GET", url, headers=headers, params=parametro)
@@ -39,13 +40,24 @@ class PODMAN():
             print(imagem['Names'])
             print(imagem)
 
-    def list_containers(self):
-        
-        list_containers = self._get_command('containers/json', {'pod':True})
-        for container in list_containers:
-            print(container)
-            print("#"*100)
+    def list_containers(self, all_containers=False):
+        list_containers = self._get_command('containers/json', {'all':all_containers})
+        pd_containers = pd.DataFrame.from_dict(list_containers)
+        return pd_containers
+
+    def status_container(self):
+        list_status = self._get_command('containers/stats', {'stream':False})
+        pd_status = pd.DataFrame(list_status['Stats'])
+        return pd_status
+
+    def logs_container(self, container):
+        url = f"{self.service}/containers/{container}/logs"
+        headers = {'Content-type': 'application/json'}
+        response = requests.request("GET", url, headers=headers, params={'since':'2017-08-07T10:10:09.055837383-04:00'})
+        print(str(response.text))
+
 
 pod = PODMAN()
-print(pod.list_containers())    
-
+#print(pod.list_containers(all_containers=True))    
+#print(pod.status_container())
+print(pod.logs_container('hopeful_blackwell'))
