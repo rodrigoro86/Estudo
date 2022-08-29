@@ -6,24 +6,24 @@
 ## Instalação
 `
 sudo apt-get remove docker docker-engine docker.io containerd runc  
-`
+`   
 `
 sudo apt-get update  
-`
+`  
 `
 sudo apt-get install  
     apt-transport-https ca-certificates curl gnupg  
     lsb-release 
-`
+`  
 `
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg 
-`
+`  
 `
 sudo apt-get update 
-`
+`  
 `
 sudo apt-get install docker-ce docker-ce-cli containerd.io 
-`
+`  
 ## Oque são Containers 
 Um pacote de código que pode executar uma ação, por exemplo: rodar uma aplicação Node.js, PHP, Python ...  
 Containers utilizam imagens para poderem ser executados;  
@@ -59,13 +59,13 @@ Este arquivo precisa de algumas instruções para poder ser executado
 Para executar a imagem primeiramente vamos precisar fazer o build;  
 `
 docker build <diretório da imagem>; 
-`
+`  
 Depois utilizar o docker run <imagem> para executá-la;  
 
 #### Lista as imagens da máquina
 `
 docker image ls  
-`
+`  
 #### Alterando uma imagem  
 Sempre que alteramos o código de uma imagem vamos precisar fazer o build novamente;  
 Para o Docker é como se fosse uma imagem completamente nova;  
@@ -82,7 +82,7 @@ Podemos fazer o download de alguma imagem do hub e deixá-la disponível em noss
 Vamos utilizar o comando
 `
 docker pull <imagem>; 
-`
+`  
 Desta maneira, caso se use em outro container, a imagem já estará pronta para ser utilizada; 
 
 Todo comando no docker tem acesso a uma flag –help;  
@@ -92,7 +92,7 @@ Utilizando desta maneira, podemos ver todas as opções disponíveis nos comando
 Para relembrar algo ou executar uma tarefa diferente com o mesmo;  
 `
 docker run –help 
-` 
+`   
 Múltiplas aplicações, mesmo container  
 Podemos incializar vários containers com a mesma imagem;  
 As aplicações funcionarão em paralelo;  
@@ -100,4 +100,4 @@ Para testar isso, podemos determinar uma porta diferente para cada uma, e rodar 
 Podemos nomear a imagem já na sua criação;  
 `
 docker build -t nome:tag . 
-`
+`  
