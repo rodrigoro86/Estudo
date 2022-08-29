@@ -141,5 +141,15 @@ docker volume prune
 docker run –v volume;/data:ro 
 `  
 Este ro é abreviação de read only 
-
- 
+#### Conectar container 
+`
+docker network connect <rede> <container> 
+`  
+#### Desconectar container  
+`
+docker network disconnect <rede> <container> 
+`  
+#### Inspecionando redes  
+`
+docker network inspect <none>  
+`  

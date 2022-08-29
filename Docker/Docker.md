@@ -124,7 +124,7 @@ docker run –v nomedovolume:/data
 Bind mount também e um volume, porém ele fica em um diretório que nós especificamos 
 Não cria volume, apenas aponta  
 `
-# docker run /dir/data:/data 
+docker run /dir/data:/data 
 `
 Dessa forma o diretório /dir/data no nosso computador, será o volume deste container 
 Bind mount não serve apenas para volumes  
@@ -136,3 +136,68 @@ Sem ter que refaer o build  a cada atualização
 docker volume create <nome> 
 `
 Desta maneira temos um named volume cirado, podemos atrelar a algum container na execução do mesmo 
+
+### Redes 
+As redes são criadas separadas do containers, como os volumes  
+Além disso existem alguns drivers de rede 
+#### Tipos de conexão  
+**Externa:** conexão com uma API de um servidor remoto 
+**Com o host:** comunicação com a máquina que está executando o Docker.
+**Entre containers:** comunicação que utiliza o driver bridge e permite entre dois ou mais containers 
+
+#### Tipos de Drivers 
+**Bridge:** o mais comum e default do Docker, utilizado quando containers precisam se conectar  
+**Host:** permite a conexão entre um container a máquina que está hosteando o Docler 
+**Macvla:** permite a conexão a um conteiner por um MAC  
+**None:** remo todas conexões de rede de um container  
+**Plugins:** permite extensões de terceiros para criar outras redes.  
+#### Listando networks  
+`
+docker network ls  
+`
+#### Criando redes 
+` 
+docker network create <nome>  
+`  
+Está rede será do tipo bridge  
+`  
+docker network create –d macvlan <nome> 
+`  
+Define o drive para mcvlan  
+#### Removendo redes  
+`
+docker network rm <nome>  
+`  
+#### Removendo redes não utilizadas  
+`
+docker network prune 
+`  
+#### Instalando do Postman 
+Vamos criar API para testar conexão entre containers  
+Para isso vamos utilizar o software Postman, que é o mais utilizado do mercado ára desenvolvimento de APIs 
+#### Conexão com o host  
+- Conectar um container com o host do docker 
+- Estabelecer uma conexão entre containers; 
+- Duas imagens distintas rodando em containers separados que precisam se conectar para inserir um dado no anco  
+#### Conectar container 
+`
+docker network connect <rede> <container> 
+`  
+#### Desconectar container  
+`
+docker network disconnect <rede> <container> 
+`  
+#### Inspecionando redes  
+`
+docker network inspect <none>  
+`  
+### Docker Compose  
+Docker Compose é uma ferramenta para rodar múltiplos containers 
+Teremos apenas um arquivo de configuração, que orquestra esta situação  
+É uma forma de rodar múltiplos builds e runs com um comando  
+Criando o primeiro Compose  
+Primeiro criar uma arquivo chamado docker-compose.yml na raiz do projeto  
+Este arquivo vai coordenar os containers e imagens, e possui algumas chaves muito utilizadas 
+**Version:** versão do Compose 
+**Services:** Containers/Serviços que vão rodar nossa aplicação  
+**Volume:** Possível adição de volumes   
