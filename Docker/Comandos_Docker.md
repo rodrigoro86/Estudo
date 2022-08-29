@@ -102,4 +102,44 @@ docker inspect <container>
 Para verificar os processos que estão sendo executados em um container, utilzamos o comando 
 `
 docker stats 
+`  
+#### Volume Anônimos  
 `
+docker run –v /data 
+`  
+`
+docker volume ls -> mostra todos os volumes do ambiente 
+`  
+#### Volumes Nomeados  
+`
+docker run –v nomedovolume:/data 
+`  
+#### Bind mounts  
+Bind mount também e um volume, porém ele fica em um diretório que nós especificamos 
+Não cria volume, apenas aponta  
+`
+# docker run /dir/data:/data 
+`
+#### Listando todos os volumes  
+`
+docker volume ls  
+`
+#### Inspecionamdo  o Volume  
+`
+docker volume inspect nome 
+`
+#### Removendo Volumes  
+`
+docker volume rm <nome> 
+`
+#### Remoção de volumes em massa  
+`
+docker volume prune 
+`
+#### Volume apenas de Leitura 
+`
+docker run –v volume;/data:ro 
+`  
+Este ro é abreviação de read only 
+
+ 

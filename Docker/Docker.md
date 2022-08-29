@@ -79,7 +79,6 @@ O resto permanece em cache, tornando o build mais rápido;
 
 #### Download de imagens  
 Podemos fazer o download de alguma imagem do hub e deixá-la disponível em nosso ambiente;  
-Vamos utilizar o comando
 `
 docker pull <imagem>; 
 `  
@@ -101,3 +100,39 @@ Podemos nomear a imagem já na sua criação;
 `
 docker build -t nome:tag . 
 `  
+## Volumes  
+Uma forma prática de persistir dados em aplicação e não depender de containers para isso 
+Todo dado criado por um container é salvo nele, quando o container é removido perdemos os dados  
+Então precismaos dos volumes para gerenciar os dados e também conseguir fazer backups de forma mais simples 
+### Tipos de Volumes  
+**Anônimos** (anonymous): Diretórios criados pela flag –v, porém com um nome aleatório 
+**Nomeados** (named): São volumes com nomes, podemos nos referir a estes facilmente e saber para que são utilizados no nosso ambiente 
+**Bind mounts:** Uma forma de salvar dados na nossa máuina, sem o gerenciamento do Docker, informamos um diretório para este fim;  
+
+#### Volume Anônimos  
+`
+docker run –v /data 
+`  
+`
+docker volume ls -> mostra todos os volumes do ambiente 
+`  
+#### Volumes Nomeados  
+`
+docker run –v nomedovolume:/data 
+`  
+#### Bind mounts  
+Bind mount também e um volume, porém ele fica em um diretório que nós especificamos 
+Não cria volume, apenas aponta  
+`
+# docker run /dir/data:/data 
+`
+Dessa forma o diretório /dir/data no nosso computador, será o volume deste container 
+Bind mount não serve apenas para volumes  
+Podemos utilizar esta técnica para atualização em tempo real do projeto  
+Sem ter que refaer o build  a cada atualização 
+
+#### Criar um volume 
+`
+docker volume create <nome> 
+`
+Desta maneira temos um named volume cirado, podemos atrelar a algum container na execução do mesmo 
