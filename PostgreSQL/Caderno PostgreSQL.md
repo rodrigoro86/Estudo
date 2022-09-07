@@ -127,4 +127,135 @@ SELECT DEPTNUM FROM FUN UNION SELECT DEPTNUM FROM AREA;
 - Filtra o DEPTNIM de duas planilhas. f e a são nomes definidos para as tabelas. 
 `
 SELECT f.NOME, a.CIDADE FROM FUN f, AREA a WHERE f.DEPTNUM = a.DEPTNUM AND f.DEPTNUM = 10;
+`  
+- Mostra o valor de uma coluna de uma tabela que não tem na outra tabela.
+`
+SELECT DEPTNUM from AREA WHERE DEPTNUM not in (SELECT DEPTNUM FROM FUN);
+` 
+ou  
+`
+SELECT DISTINCT DEPTNUM from AREA WHERE DEPTNUM not in (SELECT DEPTNUM FROM FUN);
+`  
+- Seleciona os valores da coluna NOME da tabela FUN e os valores da coluna CIDADE da tabela AREA enquanto os valores DEPTNUM da tabela FUN for igual a 10 e os valores DEPTNUM da tabela area sejam iguais aos valores DEPTNUM da tabela FUN.  
+`
+SELECT f.NOME, a.cidade from FUN f, AREA a where f.DEPTNUM = 10 and a.DEPTNUM = f.DEPTNUM;
+`  
+- Transforma todos os valores NULL da coluna COMISSAO em 0 e retorna todos os valores que são menores que o valor da COMISSAO do NOME WALDIR. 
+`
+SELECT NOME, COMISSAO, coalesce(COMISSAO, 0) from FUN where coalesce(COMISSAO, 0)<(select COMISSAO from FUN where NOME='WALDIR');
+`  
+
+##### NÚMEROS
+- Cálcular a média 
+`
+SELECT avg(SALARIO) AS media_salarial from FUN;
+`  
+- Cálcular a média por departamento
+`
+SELECT DEPTNUM, avg(SALARIO) as media_salarial from FUN group by DEPTNUM;
+`  
+- Busca o salário minimo e máximo e retorna em uma tabela 
+`
+select min(SALARIO) as salário_minimo, max(SALARIO) as salário_máximo from FUN;
+`  
+- Retorna o salário mínimo e máximo separados por departamento.
+`
+ SELECT DEPTNUM, min(SALARIO) as salário_mínimo, max(SALARIO) as salário_máximo FROM FUN group by DEPTNUM;
+`  
+
+| DEPTNUM | salário_mínimo   | salário_máximo   |
+|-|-|-|
+|      10 |             1300 |             5000 |
+|      20 |              800 |             3000 |
+|      30 |              950 |             2850 |
+
+- Soma todos os valores da coluna SALARIO. 
+`
+select sum(SALARIO) from FUN;
+`  
+- Conta a quantidade de linhas de uma tabela
+`
+select count(*) from FUN;
+`  
+- Conta a quantidade de linhas dos grupos DEPTNUM. 
+`
+select DEPTNUM, count(*) from FUN group by DEPTNUM;
+`  
+- COUNT não conta valores NULL 
+- Cria um coluna com a progração do salário. 
+`
+select NOME, SALARIO, sum(SALARIO) over (order by SALARIO, FUNNUM) as TOTAL from FUN order by 2;
+`  
+
+| NOME     | SALARIO | TOTAL |
+|-|-|-|
+| SILVIA   |     800 |   800 |
+| JAIMES   |     950 |  1750 |
+| ADAO     |    1100 |  2850 |
+| WALDIR   |    1250 |  4100 |
+| MARTINS  |    1250 |  5350 |
+| MILLENA  |    1300 |  6650 |
+| CARLOS   |    1500 |  8150 |
+| ALAN     |    1600 |  9750 |
+| CLARA    |    2450 | 12200 |
+| BIANCA   |    2850 | 15050 |
+| JOAO     |    2975 | 18025 |
+| DARIO    |    3000 | 21025 |
+| HENRY    |    3000 | 24025 |
+| REYNALDO |    5000 | 29025 |  
+
+##### Inserir
+
+- Insere um dado na tabele
+`
+INSERT into AREA (DEPTNUM, NOME, CIDADE) values (60, 'TI', 'São Paulo');
+`  
+- Insere valor default caso a coluna tenha prédefinido um valor default. 
+`
+insert into TABELALA (id) values (default);
+`
+- Inserir valores NULL
+`
+insert into TABELALA (id) values (null);
+`  
+- Copia dos dados de uma coluna e cola em outra tabela.
+`
+INSERT into AREA2 (DEPTNUM, NOME, CIDADE) SELECT DEPTNUM, NOME, CIDADE from AREA;
+`
+##### Update
+- Atualiza o salário em 20 % do departamento 20.
+`
+update FUN set SALARIO = SALARIO*1.20 where DEPTNUM = 20;
+`  
+##### Remoção  
+- Remove tudão 
+`
+DELETE from FUN;
+`
+- Remove um linha.
+`
+DELETE from FUN where DEPTNUM = 10;
+`  
+- Remove as linhas de uma tabela que não existem o valor do departamento em outra tabela. 
+`
+DELETE from FUN where not exists (select * from AREA where ARE.DEPTNUM = FUN.DEPTNUM);
+`  
+- Remove os valores repetidos mantendo o menor id.
+`
+DELETE from TESTE where id not in (select min(id) from TESTE group by nome);
+`  
+##### Criação de tabela  
+- Cria uma tabela
+`
+CREATE TABLE TABELALA (id integer default 0);
+`  
+##### Alteração da tabela
+- Altera o id para primary key
+`
+ALTER TABLE TABELALA ADD CONSTRAINT pk_id PRIMARY KEY (id);
+`  
+##### Remove uma tabela 
+- Para remover uma tabela 
+`
+DROP TABLE TABELALA
 `
