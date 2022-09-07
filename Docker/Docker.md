@@ -1,6 +1,6 @@
 # Containers
 ## Docker
-**Curso** - Docker para Desenvolvedores (com Docker Swarm e Kubernetes) - *Udemy* 
+**Curso** - Docker para Desenvolvedores (com Docker Swarm e Kubernetes) - *Udemy*   
 **Livro** - Descomplicando o Docker 
 
 ## Instalação
@@ -198,6 +198,6 @@ Teremos apenas um arquivo de configuração, que orquestra esta situação
 Criando o primeiro Compose  
 Primeiro criar uma arquivo chamado docker-compose.yml na raiz do projeto  
 Este arquivo vai coordenar os containers e imagens, e possui algumas chaves muito utilizadas 
-**Version:** versão do Compose 
-**Services:** Containers/Serviços que vão rodar nossa aplicação  
-**Volume:** Possível adição de volumes   
+**Version:** versão do Compose  
+**Services:** Containers/Serviços que vão rodar nossa aplicação   
+**Volume:** Possível adição de volumes     

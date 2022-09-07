@@ -118,7 +118,7 @@ docker run –v nomedovolume:/data
 Bind mount também e um volume, porém ele fica em um diretório que nós especificamos 
 Não cria volume, apenas aponta  
 `
-# docker run /dir/data:/data 
+docker run /dir/data:/data 
 `
 #### Listando todos os volumes  
 `
