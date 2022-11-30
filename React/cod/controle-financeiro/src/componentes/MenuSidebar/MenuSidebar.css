@@ -1,0 +1,28 @@
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: #e1ecebff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 16px 20px;
+    text-align: right;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #e1ecebff;
+    margin-left: 40px;
+    border-radius: 100px 0 0 100px ;
+    color: #425c5aff;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #e1ecebff;
+    margin-left: 40px;
+    border-radius: 100px 0 0 100px ;
+    color: #425c5aff;
+  }
+  
+
